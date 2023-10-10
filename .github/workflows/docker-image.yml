@@ -1,4 +1,4 @@
-name: GitAction
+name: Go
 #어떤 이벤트 발생했을 때
 #cron - 주기적인 작엄
 
