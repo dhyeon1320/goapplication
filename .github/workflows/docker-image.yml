@@ -13,26 +13,26 @@ jobs:
 		runs-on: ubuntu-latest
 		
 		steps:
-    - uses: actions/checkout@v3
-		- name: Set Up Go
-    	uses: actions/setup-go@v3
-			with:
-				go-version: 1.15
+    	- uses: actions/checkout@v3
+			- name: Set Up Go
+    		uses: actions/setup-go@v3
+				with:
+					go-version: 1.15
        
-    - name: Build
-			run: go build -v ./...
-			
-		- name: Login to DockerHub
-			uses: docker/login-action@v1
-			with:
-				username: dhyeon1320
-				password: goapplication
+    	- name: Build
+				run: go build -v ./...
+				
+			- name: Login to DockerHub
+				uses: docker/login-action@v1
+				with:
+					username: dhyeon1320
+					password: goapplication
 
-		- name: build and release to DockerHub
-			env:
-				NAME: dhyeon1320
-				REPO: gitaction
-			run:
-				docker build -t $REPO .
-				docker tag $REPO:latest $NAME/$REPO:latest
-				docker push $NAME/$REPO:latest
+			- name: build and release to DockerHub
+				env:
+					NAME: dhyeon1320
+					REPO: gitaction
+				run:
+					docker build -t $REPO .
+					docker tag $REPO:latest $NAME/$REPO:latest
+					docker push $NAME/$REPO:latest
